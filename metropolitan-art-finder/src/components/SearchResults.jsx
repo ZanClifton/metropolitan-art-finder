@@ -7,7 +7,7 @@ const SearchResults = ({ searchTerm }) => {
 		fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${searchTerm}`)
 			.then((response) => response.json())
 			.then(({ objectIDs }) => {
-				const arts = objectIDs.splice(0, 5);
+				const arts = objectIDs.splice(0, 50);
 				return Promise.all(
 					arts.map((ID) => {
 						return fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${ID}`);
@@ -22,6 +22,9 @@ const SearchResults = ({ searchTerm }) => {
 			})
 			.then((data) => {
 				setArt(data);
+				console.log(data.map(datum => {
+					return datum.objectID
+				}))
 			});
 	}, [searchTerm]);
 
@@ -29,7 +32,7 @@ const SearchResults = ({ searchTerm }) => {
 		<div>
 			<h2>Beautiful Art</h2>
 			<ul>
-				{art.map(({ artistWikidata_URL, artistDisplayName, title, medium, primaryImageSmall }) => {
+				{art.map(({ artistWikidata_URL, artistDisplayName, title, medium, primaryImageSmall, objectID }) => {
 					return (
 						<li>
 							<img src={primaryImageSmall} alt={title} />
@@ -37,6 +40,7 @@ const SearchResults = ({ searchTerm }) => {
 							<p>{artistDisplayName}</p>
 							<p>{title}</p>
 							<p>{medium}</p>
+							<p>{objectID}</p>
 						</li>
 					);
 				})}
