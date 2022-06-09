@@ -37,5 +37,6 @@ Your default browser will be used to display the page.
 #
 <div align=right>
   <h6> Project created with thanks to: <a href="https://northcoders.com/">Northcoders</a>
+    <br>README.md created with thanks to: <a href="https://github.com/Ileriayo/markdown-badges">Ileriayo</a>
   <br>Mini-app plan created with: <a href="https://excalidraw.com/">Excalidraw</a></h6> 
 </div>
